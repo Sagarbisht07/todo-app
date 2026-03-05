@@ -1,0 +1,57 @@
+.btn {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 400px;
+  border-radius: 4px;
+}
+.Play_area {
+  width: 400px;
+  height: 300px;
+  border: 2px solid black;
+  margin-top: 10px;
+  position: relative;
+
+  .red_dot {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: red;
+  }
+}
+.input-delay {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  gap: 5px;
+  justify-content: end;
+
+  .input-delay-box{
+    height: 30px;
+    border-radius: 4px;
+    color: black;
+    padding: 2px;
+    background: transparent;
+  }
+}
+
+.score_area {
+  display: flex;
+  justify-content: space-between;
+  width: 392px;
+  height: 300px;
+  border: 2px solid rgb(252, 252, 252);
+  margin-top: 10px;
+  padding: 5px;
+}
+.mouse_click {
+  border: 1px solid black;
+  width: 45%;
+}
+.reaction_time {
+  border: 1px solid black;
+  width: 45%;
+}
+.label {
+  border-bottom: 1px solid black;
+}
