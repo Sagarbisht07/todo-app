@@ -1,97 +1,122 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import "./style.scss";
-import { useEffect } from "react";
 
 const PlayRedDotGame = () => {
   const [buttonPressed, setButtonPressed] = useState("");
-  const [position, setPosition] = useState({ top: "0px", left: "0px" });
-  const [numberOfClicks, setNumberOfClicks] = useState(0);
+  const [position, setPosition] = useState({ top: 0, left: 0 });
   const [delay, setDelay] = useState(500);
+  const [clicks, setClicks] = useState([]);
+  const [startTime, setStartTime] = useState(null);
 
   const intervalRef = useRef(null);
 
-  // this function to calculate red box height and width
+  // random position generator
   function handlePosition() {
-    let RandomPositionX = Math.random() * 250;
-    let RandomPositionY = Math.random() * 350;
-    return { RandomPositionX, RandomPositionY };
+    const RandomPositionX = Math.random() * 250;
+    const RandomPositionY = Math.random() * 350;
+
+    return {
+      top: RandomPositionX,
+      left: RandomPositionY,
+    };
   }
 
-  // it will handle start,reset and pause working by using side effect of useEffect
+  // move red dot
+  function moveDot() {
+    const value = handlePosition();
+    setPosition(value);
+  }
+
+  // start / pause / reset
   useEffect(() => {
     if (buttonPressed === "start") {
-      intervalRef.current = setInterval(() => {
-        let value = handlePosition();
-        setPosition({
-          top: value.RandomPositionX,
-          left: value.RandomPositionY,
-        });
-      }, delay);
-    } else if (buttonPressed === "reset") {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
-      setPosition({
-        top: "0px",
-        left: "0px",
-      });
-    } else if (buttonPressed === "pause") {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
-  }, [buttonPressed]);
+      moveDot();
+      setStartTime(Date.now());
 
-  function mouseEvents() {
-    const mouseEvent = addEventListener.mouseEvent
-    console.log(mouseEvent);
+      intervalRef.current = setInterval(() => {
+        moveDot();
+      }, delay);
+    }
+
+    if (buttonPressed === "pause") {
+      clearInterval(intervalRef.current);
+    }
+
+    if (buttonPressed === "reset") {
+      clearInterval(intervalRef.current);
+      setPosition({ top: 0, left: 0 });
+      setClicks([]);
+      setStartTime(null);
+    }
+
+    return () => clearInterval(intervalRef.current);
+  }, [buttonPressed, delay]);
+
+  // when user clicks red dot
+  function handleDotClick() {
+    const now = Date.now();
+    const reaction = ((now - startTime) / 1000).toFixed(2);
+
+    setClicks((prev) => [...prev, reaction]);
+
+    setStartTime(now);
+
+    moveDot();
   }
-  console.log(mouseEvents);
 
   return (
     <div>
-      {/* all buttons actions */}
+      {/* buttons */}
       <div className="btn">
-        <button
-          onClick={() => setButtonPressed("start")}
-          disabled={buttonPressed === "start"}
-        >
-          Start
-        </button>
+        <button onClick={() => setButtonPressed("start")}>Start</button>
         <button onClick={() => setButtonPressed("pause")}>Pause</button>
-        <button onClick={() => setButtonPressed("reset")}>Resat</button>
+        <button onClick={() => setButtonPressed("reset")}>Reset</button>
       </div>
 
-      {/* input box to update the red dot speed */}
+      {/* delay input */}
       <div className="input-delay">
         <input
           className="input-delay-box"
           value={delay}
-          onChange={(e) => {
-            setDelay(e.target.value);
-            setButtonPressed("reset");
-          }}
-        ></input>
-        <label>Entre Delay here (ms)</label>
+          onChange={(e) => setDelay(Number(e.target.value))}
+        />
+        <label>Enter Delay here (ms)</label>
       </div>
 
-      {/* where dot is present inside the box */}
+      {/* play area */}
       <div className="Play_area">
-        <span
-          className="red_dot"
-          style={{
-            top: position?.top,
-            left: position?.left,
-          }}
-        ></span>
+        {buttonPressed === "start" && (
+          <span
+            className="red_dot"
+            onClick={handleDotClick}
+            style={{
+              position: "absolute",
+              top: position.top,
+              left: position.left,
+            }}
+          ></span>
+        )}
       </div>
 
-      {/*  here we need to show events of mouse  */}
+      {/* table */}
       <div className="score_area">
-        <div className="mouse_click">
-          <label className="label">Mouse click number</label>
-        </div>
-        <div className="reaction_time">
-          <label className="label">Reaction time</label>
-        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Mouse Click Number</th>
+              <th>Reaction Time</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {clicks.map((time, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{time}s</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
