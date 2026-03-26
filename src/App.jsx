@@ -6,6 +6,7 @@ import PlayRedDotGame from "./TestInterview/Interview";
 import InfiniteScroll from "./Infinite Scroll/InfiniteScroll";
 import VirtualizedList from "./Virtualized List/VirtualizedList";
 import HookUsed from "./UseDebounceHook/UseDebounceHook";
+import Accordion from "./Accordion/Accordion";
 
 function App() {
   return (
@@ -20,8 +21,10 @@ function App() {
       {/* <InfiniteScroll /> */}
       {/* <h1>Virtualized List</h1>
       <VirtualizedList/> */}
-      <h1>Debounced Search</h1>
-      <HookUsed />
+      {/* <h1>Debounced Search</h1>
+      <HookUsed /> */}
+      <h1>Accordion </h1>
+      <Accordion/>
     </>
   );
 }
