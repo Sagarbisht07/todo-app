@@ -7,6 +7,8 @@ import InfiniteScroll from "./Infinite Scroll/InfiniteScroll";
 import VirtualizedList from "./Virtualized List/VirtualizedList";
 import HookUsed from "./UseDebounceHook/UseDebounceHook";
 import Accordion from "./Accordion/Accordion";
+import Temp from "./31-march/interview31-march";
+import NestedCheckbox from "./MachineCoding/NestedCheckBox/NestedCheckbox";
 
 function App() {
   return (
@@ -23,8 +25,10 @@ function App() {
       <VirtualizedList/> */}
       {/* <h1>Debounced Search</h1>
       <HookUsed /> */}
-      <h1>Accordion </h1>
-      <Accordion/>
+      {/* <h1>Accordion </h1>
+      <Accordion/> */}
+      <h1> NestedCheckbox</h1>
+      <NestedCheckbox />
     </>
   );
 }
