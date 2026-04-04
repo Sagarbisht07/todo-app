@@ -1,0 +1,27 @@
+.tab_wrapper{
+    display: flex;
+    width: 100vh;
+    justify-content: center;
+    gap: 10rem;
+    margin-top: 3rem;
+    font-size: 16px;
+    font-weight: 700;
+    background-color: rgb(254, 237, 216);
+    padding: 15px;
+    cursor: pointer;
+
+    .active_tab{
+        background-color: rgb(255, 216, 166);
+        padding: 6px;
+        border-radius: 4px;
+    }
+}
+.tab_content{
+    width: 100vh;
+    margin-top: 0.5rem;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: antiquewhite;
+    padding: 15px;
+    cursor: pointer;
+}

@@ -9,6 +9,7 @@ import HookUsed from "./UseDebounceHook/UseDebounceHook";
 import Accordion from "./Accordion/Accordion";
 import Temp from "./31-march/interview31-march";
 import NestedCheckbox from "./MachineCoding/NestedCheckBox/NestedCheckbox";
+import TabComp from "./MachineCoding/TabComp/TabComp";
 
 function App() {
   return (
@@ -27,8 +28,10 @@ function App() {
       <HookUsed /> */}
       {/* <h1>Accordion </h1>
       <Accordion/> */}
-      <h1> NestedCheckbox</h1>
-      <NestedCheckbox />
+      {/* <h1> NestedCheckbox</h1>
+      <NestedCheckbox /> */}
+      <h1>Tabs </h1>
+      <TabComp />
     </>
   );
 }
