@@ -11,6 +11,9 @@ import Temp from "./31-march/interview31-march";
 import NestedCheckbox from "./MachineCoding/NestedCheckBox/NestedCheckbox";
 import TabComp from "./MachineCoding/TabComp/TabComp";
 import TicTacToe from "./MachineCoding/Tic-Tac-Toe/Tic-Tac-Toe";
+import StarRating from "./MachineCoding/StarRating/StarRating";
+import AutoCompleteNew from "./MachineCoding/AutoComplete/AutoComplete";
+import Temp1 from "./Temp/temp";
 
 function App() {
   return (
@@ -33,8 +36,14 @@ function App() {
       <NestedCheckbox /> */}
       {/* <h1>Tabs </h1>
       <TabComp /> */}
-      <h1>Tic-Tac-Toe </h1>
-      <TicTacToe />
+      {/* <h1>Tic-Tac-Toe </h1>
+      <TicTacToe /> */}
+      {/* <h1>Star Rating</h1>
+      <StarRating /> */}
+      {/* <h1>AutoComplete</h1>
+      <AutoCompleteNew /> */}
+      {/* <h1></h1> */}
+      <Temp1 />
     </>
   );
 }
